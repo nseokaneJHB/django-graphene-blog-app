@@ -1,0 +1,4 @@
+.DS_Store
+blog_env
+db.sqlite3
+.vscode
