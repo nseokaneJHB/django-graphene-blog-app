@@ -9,6 +9,7 @@ COPY requirements.txt requirements.txt
 
 RUN echo "web: gunicorn core.wsgi --log-file -" >> Procfile
 RUN echo "python-3.9.5" >> runtime.txt   
+RUN pip3 install gunicorn
 RUN pip3 install -U pip
 
 # Run the requirements.txt from the previously created directory on the docker container
