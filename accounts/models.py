@@ -43,6 +43,7 @@ class CustomUserManager(BaseUserManager):
 # User Model Here.
 class CustomUser(AbstractUser):
 	GENDER = (
+		('Not Specified', 'Not Specified'),
 		('Male', 'Male'),
 		('Female', 'Female'),
 		('Other', 'Other'),
@@ -50,11 +51,11 @@ class CustomUser(AbstractUser):
 
 	username = None
 	email = models.EmailField(_('Email Address'), unique=True)
-	gender = models.CharField(_('Gender'), max_length=7, choices=GENDER, blank=True)
+	gender = models.CharField(_('Gender'), max_length=15, choices=GENDER, default='Not Specified', blank=True)
 	phone_number = models.CharField(_('Phone Number'), max_length=9, blank=True)
 	bio = models.TextField(_('About Me'), blank=True)
 	update_at = models.DateTimeField(_('Update At'), auto_now=True)
-	slug = models.SlugField(max_length=255, unique=True,  blank=True)
+	slug = models.SlugField(max_length=255, unique=True, blank=True)
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(f'{self.first_name} {self.last_name} {str(self.pk)}')
